@@ -1,3 +1,5 @@
+// MEGA legacy. Will update soon.
+
 // Globas SS Variables and Doc Config
 
 var ui        = SpreadsheetApp.getUi();
