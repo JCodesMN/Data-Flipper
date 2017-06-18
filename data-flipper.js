@@ -1,20 +1,27 @@
-// MEGA legacy. Will update soon.
+// config
 
-// Globas SS Variables and Doc Config
+var config;
 
-var ui        = SpreadsheetApp.getUi();
-var ss        = SpreadsheetApp.getActive();
-var iSheet    = ss.getSheets()[0];
-var oSheet    = ss.getSheets()[1];
-var iRowCount = iSheet.getMaxRows();
-var iColCount = iSheet.getMaxColumns();
-var aValues   = iSheet.getRange(2,1,iRowCount,iColCount).getValues();
+// global
 
-// UI Menu and Alert Text
+var ss         = SpreadsheetApp.getActiveSpreadsheet();
+var sheets     = ss.getSheets();
+var sheetNames = arrSheetNames(ss);
+
+// var ui        = SpreadsheetApp.getUi();
+// var ss        = SpreadsheetApp.getActive();
+// var iSheet    = ss.getSheets()[0];
+// var oSheet    = ss.getSheets()[1];
+// var iRowCount = iSheet.getMaxRows();
+// var iColCount = iSheet.getMaxColumns();
+// var aValues   = iSheet.getRange(2,1,iRowCount,iColCount).getValues();
+
+// menu
 
 function onOpen() {
- 	ui.createMenu('makeData')
-	.addItem('Expand Data', 'aToData')
+  var ui = SpreadsheetApp.getUi();
+  ui.createMenu('Data Flipper')
+    .addItem('Run Recipe', 'runRecipe')
     .addToUi();
 }
 
