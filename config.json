@@ -1,0 +1,5 @@
+{
+  "process":"expandVertically",
+  "input": "Sheet1",
+  "output": "Sheet2"
+}
