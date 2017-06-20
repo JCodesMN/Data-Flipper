@@ -67,7 +67,7 @@ function runScript() {
   var sheetNames = arrSheetNames(ss);
 
   if (config.input !== "" && config.output !== "") {
-    Logger.log("you have stuff");
+
   } 
 } 
 
