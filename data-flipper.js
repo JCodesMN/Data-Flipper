@@ -1,13 +1,44 @@
+// onOpen
+
+function onOpen() {
+  var ui = SpreadsheetApp.getUi();
+  ui.createMenu("Data Flipper")
+    .addItem("Run Script", "runScript")
+    .addToUi();
+}
+
 // config
 
-var config;
+var config = importConfiguration("");
+
+function jsonFromUrl(url) {
+  var rsp  = UrlFetchApp.fetch(url);
+  var data = rsp.getContentText();
+  var json = JSON.parse(data);
+  return json;
+} 
+
+function jsonFromFile(file) {
+  var data = file.getBlob().getDataAsString();
+  var json = JSON.parse(data);
+  return json;
+} 
+
+function importConfiguration(scriptConfig) {
+  var regExp = new RegExp("^(http|https)://");
+  var test   = regExp.test(scriptConfig);
+  var json;
+  if (test) {
+    json = jsonFromUrl(scriptConfig); 
+    return json;
+  } else {
+    var file = findFileAtPath(scriptConfig); 
+    json = jsonFromFile(file); 
+    return json;
+  }
+}
 
 // global
-
-var ss         = SpreadsheetApp.getActiveSpreadsheet();
-var sheets     = ss.getSheets();
-var sheetNames = arrSheetNames(ss);
-
 // var ui        = SpreadsheetApp.getUi();
 // var ss        = SpreadsheetApp.getActive();
 // var iSheet    = ss.getSheets()[0];
@@ -16,14 +47,21 @@ var sheetNames = arrSheetNames(ss);
 // var iColCount = iSheet.getMaxColumns();
 // var aValues   = iSheet.getRange(2,1,iRowCount,iColCount).getValues();
 
-// menu
 
-function onOpen() {
-  var ui = SpreadsheetApp.getUi();
-  ui.createMenu('Data Flipper')
-    .addItem('Run Recipe', 'runRecipe')
-    .addToUi();
-}
+// script
+
+function runScript() {
+  var ss         = SpreadsheetApp.getActiveSpreadsheet();
+  var sheets     = ss.getSheets();
+  var sheetNames = arrSheetNames(ss);
+
+  if () {
+  
+  }
+
+
+} 
+
 
 // Data Functions
 
