@@ -1,5 +1,10 @@
 {
-  "process": "verticalExpansion",
-  "input": "Sheet1",
-  "output": "Sheet2"
+  "process": "horizontalExpansion",
+  "input": {
+    "pathToSpreadsheet": "data-flipper",
+    "sheet": "Sheet1"
+  },
+  "output": {
+    "sheet": "Sheet2"
+  }
 }

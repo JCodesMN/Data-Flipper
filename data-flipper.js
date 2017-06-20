@@ -1,3 +1,7 @@
+// config
+
+var config = importConfiguration("https://raw.githubusercontent.com/jcodesmn/data-flipper/master/horizontalExpansion.json");
+
 // onOpen
 
 function onOpen() {
@@ -7,9 +11,6 @@ function onOpen() {
     .addToUi();
 }
 
-// config
-
-var config = importConfiguration("");
 
 function jsonFromUrl(url) {
   var rsp  = UrlFetchApp.fetch(url);
@@ -38,6 +39,17 @@ function importConfiguration(scriptConfig) {
   }
 }
 
+// sheets
+
+function arrSheetNames(ssObj) {
+  var sheets = ssObj.getSheets();
+  var arr    = [];
+  for (var i = 0; i < sheets.length; i++) {
+    arr.push(sheets[i].getName());
+  } 
+  return arr;
+} 
+
 // global
 // var ui        = SpreadsheetApp.getUi();
 // var ss        = SpreadsheetApp.getActive();
@@ -47,7 +59,6 @@ function importConfiguration(scriptConfig) {
 // var iColCount = iSheet.getMaxColumns();
 // var aValues   = iSheet.getRange(2,1,iRowCount,iColCount).getValues();
 
-
 // script
 
 function runScript() {
@@ -55,11 +66,9 @@ function runScript() {
   var sheets     = ss.getSheets();
   var sheetNames = arrSheetNames(ss);
 
-  if () {
-  
-  }
-
-
+  if (config.input !== "" && config.output !== "") {
+    Logger.log("you have stuff");
+  } 
 } 
 
 
