@@ -1,7 +1,5 @@
 // config
 
-var config = importConfiguration("https://raw.githubusercontent.com/jcodesmn/data-flipper/master/horizontalExpansion.json");
-
 // onOpen
 
 function onOpen() {
@@ -9,34 +7,6 @@ function onOpen() {
   ui.createMenu("Data Flipper")
     .addItem("Run Script", "runScript")
     .addToUi();
-}
-
-
-function jsonFromUrl(url) {
-  var rsp  = UrlFetchApp.fetch(url);
-  var data = rsp.getContentText();
-  var json = JSON.parse(data);
-  return json;
-} 
-
-function jsonFromFile(file) {
-  var data = file.getBlob().getDataAsString();
-  var json = JSON.parse(data);
-  return json;
-} 
-
-function importConfiguration(scriptConfig) {
-  var regExp = new RegExp("^(http|https)://");
-  var test   = regExp.test(scriptConfig);
-  var json;
-  if (test) {
-    json = jsonFromUrl(scriptConfig); 
-    return json;
-  } else {
-    var file = findFileAtPath(scriptConfig); 
-    json = jsonFromFile(file); 
-    return json;
-  }
 }
 
 function checkValIn(arr, val) { 
@@ -92,41 +62,24 @@ function openFileAsSpreadsheet(file) {
 
 // script
 
-function runScript() {
+function expandCol() {
   var ss = SpreadsheetApp.getActiveSpreadsheet();
-  var iValues;
-  if (config.process !== "") {
-    if (config.input.pathToSpreadsheet !== "" && config.input.sheet !== "") {
-      var iFile = findFileAtPath(config.input.pathToSpreadsheet);
-      if (iFile) {
-        var iSS = openFileAsSpreadsheet(iFile);
-        if (iSS) {
-          var iSheet = validSheet(iSS, config.input.sheet);
-          if (iSheet) {
-            var iMaxRows = iSheet.getMaxRows();
-            var iMaxCol  = iSheet.getMaxColumns();
-            iValues      = iSheet.getRange(2, 1, iMaxRows, iMaxCol).getValues();
-          } else {
-            // sheet not found in spreadsheet
-          }
-        } else {
-          // can't open file as spreadsheet
-        }
-      } else {
-        // no file found at path
-      }
-    } else {
-      // no valid input 
-    }
+  if (ss.getNumSheets() >= 2) {
+    var iSheet   = ss.getSheets()[0];
+    var oSheet   = ss.getSheets()[1];
+    // var iArr = arrForColName(iSheet, 0)
+
   } else {
-    // no process specified
+    Logger.log("This function requires two sheets in the spreadsheet");
+  
   }
 
-  // do stuff with iValues
-
-  var oFile, oSS, oSheet;
-
 } 
+
+function compressToCol() {
+  
+} 
+
 
 // legacy
 
