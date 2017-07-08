@@ -1,5 +1,3 @@
-// config
-
 // onOpen
 
 function onOpen() {
@@ -9,21 +7,40 @@ function onOpen() {
     .addToUi();
 }
 
+// ------------------------------------------
+// v0.2-beta | google-apps-script-cheat-sheet 
+// ------------------------------------------
+
+/**
+ * Returns true if the value is in the array.
+ *
+ * @param {Array} arr
+ * @param {*} val
+ * @returns {boolean}
+ */
+
 function checkValIn(arr, val) { 
   return arr.indexOf(val) > -1; 
 }
 
-function arrSheetNames(ssObj) {
-  var sheets = ssObj.getSheets();
-  var arr    = [];
+/**
+ * Returns an array of the names of the sheets in a spreadsheet.
+ *
+ * @param {Spreadsheet} ss
+ * @returns {string[]}
+ */
+
+function arrSheetNames(ss) {
+  var sheets = ss.getSheets();
+  var result = [];
   for (var i = 0; i < sheets.length; i++) {
     arr.push(sheets[i].getName());
   } 
-  return arr;
+  return result;
 } 
 
 function validSheet(ssObj, name) {
-  var arr = arrSheetNames(sssObj);
+  var arr = arrSheetNames(ssObj);
   if (checkValIn(arr, name)) {
     return ssObj.getSheetByName(name);
   } 
